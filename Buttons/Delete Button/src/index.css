@@ -1,0 +1,154 @@
+/* Container page: center content vertically and horizontally */
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8fafc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+}
+
+/* Base button styles */
+.delete-button {
+  position: relative;
+  background-color: #ef4444; /* Red */
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.delete-button:hover:not(:disabled) {
+  background-color: #dc2626;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.5);
+}
+
+.delete-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  background-color: #fca5a5;
+}
+
+/* Text inside button */
+.button-text {
+  pointer-events: none;
+}
+
+/* Animation container */
+.animation {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+/* Small balls animation */
+.balls {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow:
+    12px 0 white,
+    24px 0 white;
+  animation: balls-move 1.5s linear infinite;
+}
+
+/* Trash can lid */
+.lid {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  width: 16px;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transform-origin: center bottom;
+  animation: lid-move 1.5s linear infinite;
+}
+
+/* Trash can body */
+.can {
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Filler inside can */
+.filler {
+  width: 100%;
+  height: 100%;
+  background-color: #ef4444;
+  animation: filler-move 1.5s linear infinite;
+}
+
+/* Animations */
+@keyframes balls-move {
+  0%, 100% {
+    box-shadow:
+      12px 0 white,
+      24px 0 white;
+  }
+  50% {
+    box-shadow:
+      0 0 white,
+      12px 0 white;
+  }
+}
+
+@keyframes lid-move {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes filler-move {
+  0%, 100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+}
+
+/* When deleting or deleted, animate */
+.delete-button.deleting .balls,
+.delete-button.deleting .lid,
+.delete-button.deleting .filler {
+  animation-play-state: running;
+}
+
+.delete-button:not(.deleting) .balls,
+.delete-button:not(.deleting) .lid,
+.delete-button:not(.deleting) .filler {
+  animation-play-state: paused;
+}
+
+
+
