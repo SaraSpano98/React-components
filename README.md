@@ -15,4 +15,4 @@ Here's what buttons it contains:
 - Trash Button
 
 
-# Inside the components, I used: React, CSS, Javascript and HTML. 
+## Inside the components, I used: React, CSS, Javascript and HTML. 
